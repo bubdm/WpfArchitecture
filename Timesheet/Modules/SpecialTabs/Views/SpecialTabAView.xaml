@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="SpecialTabs.Views.SpecialTabAView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SpecialTabs.Views"
+             xmlns:inf="clr-namespace:Timesheet.Infrastructure;assembly=Timesheet.Infrastructure"
+             xmlns:prism="http://prismlibrary.com/"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <UserControl.Resources>
+        <Style TargetType="TabItem" x:Key="SimpleHeader">
+            <Setter Property="Header" Value="{Binding DataContext.Title}"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <Button Command="{Binding AddToTabControlRegionCommand}" Width="100" Height="25" >Add Inner Tab</Button>
+        </StackPanel>
+        <TabControl prism:RegionManager.RegionName="{x:Static inf:RegionNames.TabControlRegion}" ItemContainerStyle="{StaticResource SimpleHeader}" Grid.Row="1"></TabControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="MainContent.Views.GridContentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MainContent.Views"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:inf="clr-namespace:Timesheet.Infrastructure;assembly=Timesheet.Infrastructure"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" 
+             xmlns:infTriggers="clr-namespace:Timesheet.Infrastructure.Triggers;assembly=Timesheet.Infrastructure"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate x:Key="HeaderTemplate" DataType="{x:Type TabItem}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" Margin="2">
+                    <TextBlock DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}, Path=DataContext}" Text="{Binding Path=DataContext.Title}"/>
+                    <TextBlock DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}, Path=DataContext}" Text="{Binding Path=DataContext.Owner}"/>
+                </StackPanel>
+                <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="X" Grid.Column="1" Width="20" Height="20" HorizontalAlignment="Right">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <infTriggers:CloseTabTriggerAction/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Grid>
+        </DataTemplate>
+        <Style x:Key="CustomTabItem" TargetType="TabItem">
+            <Setter Property="HeaderTemplate" Value="{StaticResource HeaderTemplate}"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <TabControl x:Name="tabRegion" ItemContainerStyle="{StaticResource CustomTabItem}" prism:RegionManager.RegionName="{x:Static inf:RegionNames.GridTabsRegion}">
+        </TabControl>
+        <StackPanel Orientation="Horizontal" Height="40" Grid.Row="1" HorizontalAlignment="Right">
+            <Button Command="{Binding AddTimesheetInstanceCommand}" Width="150" Height="25" Margin="5" >New Timesheet Tab</Button>
+            <Button Command="{Binding AddDailyInstanceCommand}" Width="150" Height="25" Margin="5" >New Daily Summary Tab</Button>
+            <Separator Background="{x:Null}" Width="15"/>
+            <Button Command="{Binding AddSpecialTabCommand}" Width="150" Height="25" Margin="5" Content="Add Scpecial Tab">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="DeepSkyBlue"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </Grid>    
+</UserControl>

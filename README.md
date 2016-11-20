@@ -1,4 +1,5 @@
- # PRISM Architecture Sample #
+ # PRISM Architecture Sample
+ 
  The intent of this project is to generate a Prism based test application following the main concepts and conventions for a WPF application.  
  Prism is a framework for building loosely coupled, maintainable, and testable XAML applications in WPF, Windows 10 UWP, and Xamarin Forms.
  

@@ -15,9 +15,7 @@ Prism is a framework for building loosely coupled, maintainable, and testable XA
 
 ## Dependencies
 
- All dependencies for the project will be resolved by Nuget package manager once a build is done in Visual Studio, but you can download those manually if you want.
- 
- The main dependencies for the project are listed below:
+ The main dependencies are listed below:
  
  * [Prism Core 6](https://www.nuget.org/packages/Prism.Core/). **Nuget Command**: Install-Package Prism.Core -Version 6.1.0 
  
